@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
-
 import { useAuth } from '../contexts/AuthContext';
 
 interface Message {
@@ -23,16 +22,14 @@ const AIChatbot: React.FC = () => {
     if (open) {
       setModalVisible(true);
     } else {
-      // Wait for animation before removing from DOM
-      const timeout = setTimeout(() => setModalVisible(false), 320);
+      const timeout = setTimeout(() => setModalVisible(false), 180);
       return () => clearTimeout(timeout);
     }
   }, [open]);
 
-  if (!user) return null; // Only show for authenticated users
+  if (!user) return null;
 
   const handleSend = async () => {
-     console.log('handleSend called', input, files);
     if (!input && files.length === 0) return;
     setMessages((msgs) => [...msgs, { sender: 'user', text: input, files: files.map(f => f.name) }]);
     setLoading(true);
@@ -41,10 +38,9 @@ const AIChatbot: React.FC = () => {
       formData.append('prompt', input);
       files.forEach((file) => formData.append('files', file));
       const token = localStorage.getItem('authToken');
-      const res = await axios.post('/api/ai-chatbot', formData, {
+      const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/ai-chatbot`, formData, {
         headers: {
           'Authorization': `Bearer ${token}`
-        
         }
       });
       setMessages((msgs) => [
@@ -72,7 +68,7 @@ const AIChatbot: React.FC = () => {
 
   return (
     <>
-      {/* Floating Chatbot Icon at Bottom Right with Hover Animation */}
+      {/* Floating Chatbot Icon */}
       <button
         onClick={() => setOpen((o) => !o)}
         style={{
@@ -80,27 +76,24 @@ const AIChatbot: React.FC = () => {
           bottom: 40,
           right: 40,
           zIndex: 1000,
-          background: 'rgba(255,255,255,0.92)',
-          border: '2.5px solid #6366f1',
-          borderRadius: '50%',
-          width: 56,
-          height: 56,
-          boxShadow: '0 6px 32px rgba(99,102,241,0.18)',
+          background: '#fff',
+          border: '2px solid #1e293b',
+          borderRadius: 0,
+          width: 40,
+          height: 40,
+          boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          fontSize: 28,
+          fontSize: 18,
           cursor: 'pointer',
-          transition: 'box-shadow 0.25s, background 0.25s, transform 0.25s',
-          backdropFilter: 'blur(8px)',
+          fontFamily: 'Segoe UI, Arial, sans-serif',
         }}
-        aria-label="Open Learning Chatbot"
-        onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.12)')}
-        onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')}
+        aria-label="Open SkillBridge MentorBot"
       >
-        <span role="img" aria-label="Learning Chatbot">🤖</span>
+        <span role="img" aria-label="AI Chatbot">🤖</span>
       </button>
-      {/* Large, Centered, Creative Chatbot Modal with Animation */}
+      {/* Chatbot Modal */}
       {modalVisible && (
         <div
           style={{
@@ -109,80 +102,83 @@ const AIChatbot: React.FC = () => {
             left: '50%',
             transform: open
               ? 'translate(-50%, -50%) scale(1)'
-              : 'translate(-50%, -50%) scale(0.92)',
+              : 'translate(-50%, -50%) scale(0.96)',
             opacity: open ? 1 : 0,
-            width: 'min(700px, 98vw)',
-            height: 'min(700px, 98vh)',
-            background: 'rgba(245,247,255,0.96)',
-            borderRadius: 36,
-            boxShadow: '0 16px 64px 0 rgba(99,102,241,0.18)',
+            width: 'min(540px, 98vw)',
+            height: 'min(500px, 98vh)',
+            background: '#f8fafc',
+            borderRadius: 0,
+            boxShadow: '0 2px 12px rgba(0,0,0,0.10)',
             zIndex: 1001,
             display: 'flex',
             flexDirection: 'column',
             overflow: 'hidden',
-            border: '2.5px solid #6366f1',
-            backdropFilter: 'blur(16px)',
-            transition: 'opacity 0.32s cubic-bezier(.4,1.3,.6,1), transform 0.32s cubic-bezier(.4,1.3,.6,1)',
-            padding: window.innerWidth < 600 ? 0 : undefined,
+            border: '2px solid #1e293b',
+            fontFamily: 'Segoe UI, Arial, sans-serif',
+            transition: 'opacity 0.18s, transform 0.18s',
           }}
         >
-          {/* Header with Gradient and Unique Name */}
+          {/* Header */}
           <div style={{
-            background: 'linear-gradient(90deg, #6366f1 0%, #a5b4fc 100%)',
+            background: '#1e293b',
             color: '#fff',
-            padding: window.innerWidth < 600 ? '18px 12px' : '28px 36px',
-            fontWeight: 800,
-            fontSize: window.innerWidth < 600 ? 20 : 30,
+            padding: '12px 18px',
+            fontWeight: 700,
+            fontSize: 18,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            letterSpacing: 1.2,
-            boxShadow: '0 2px 16px rgba(99,102,241,0.10)',
+            borderBottom: '2px solid #334155',
+            letterSpacing: 1.1,
+            flexDirection: 'column',
+            gap: 2,
           }}>
-            <span style={{display: 'flex', alignItems: 'center', gap: 16}}>
-              <span role="img" aria-label="Learning Chatbot" style={{fontSize: window.innerWidth < 600 ? 24 : 36}}>🤖</span>
-              Learning Chatbot
+            <span style={{display: 'flex', alignItems: 'center', gap: 10, width: '100%', justifyContent: 'space-between'}}>
+              <span style={{display: 'flex', alignItems: 'center', gap: 10}}>
+                <span role="img" aria-label="AI Chatbot" style={{fontSize: 18}}>🤖</span>
+                <span style={{fontWeight: 800, fontSize: 20, color: '#fff'}}>SkillBridge MentorBot</span>
+              </span>
+              <button onClick={() => setOpen(false)} style={{ background: 'none', border: 'none', color: '#fff', fontSize: 22, cursor: 'pointer', fontWeight: 400 }}>×</button>
             </span>
-            <button onClick={() => setOpen(false)} style={{ background: 'none', border: 'none', color: '#fff', fontSize: window.innerWidth < 600 ? 24 : 36, cursor: 'pointer', fontWeight: 400, transition: 'color 0.2s' }}>&times;</button>
+            <span style={{fontSize: 12, color: '#cbd5e1', fontWeight: 500, marginTop: 2, letterSpacing: 0.2}}>
+              Your AI Mentor for College & Career Success
+            </span>
           </div>
-          {/* Chat Area with Glassmorphism and Gradient Bubbles */}
-          <div style={{ flex: 1, padding: window.innerWidth < 600 ? 12 : 36, overflowY: 'auto', background: 'linear-gradient(135deg, #f1f5ff 0%, #e0e7ff 100%)', display: 'flex', flexDirection: 'column', gap: window.innerWidth < 600 ? 10 : 22 }}>
+          {/* Chat Area */}
+          <div style={{ flex: 1, padding: 14, overflowY: 'auto', background: '#f8fafc', display: 'flex', flexDirection: 'column', gap: 10, borderBottom: '2px solid #e2e8f0' }}>
             {messages.map((msg, idx) => (
-              <div key={idx} style={{ textAlign: msg.sender === 'user' ? 'right' : 'left', margin: window.innerWidth < 600 ? '6px 0' : '12px 0', opacity: 0, animation: `fadeIn 0.5s ${0.1 * idx}s forwards` }}>
+              <div key={idx} style={{ textAlign: msg.sender === 'user' ? 'right' : 'left', margin: '4px 0' }}>
                 <span style={{
                   display: 'inline-block',
-                  background: msg.sender === 'user' ? 'linear-gradient(90deg, #6366f1 0%, #a5b4fc 100%)' : 'rgba(255,255,255,0.85)',
+                  background: msg.sender === 'user' ? '#2563eb' : '#f1f5f9',
                   color: msg.sender === 'user' ? '#fff' : '#222',
-                  borderRadius: 22,
-                  padding: window.innerWidth < 600 ? '10px 14px' : '16px 26px',
-                  maxWidth: '90vw',
+                  borderRadius: 0,
+                  padding: '8px 14px',
+                  maxWidth: '80vw',
                   wordBreak: 'break-word',
-                  boxShadow: msg.sender === 'user' ? '0 2px 12px rgba(99,102,241,0.12)' : '0 2px 12px rgba(160,160,200,0.10)',
-                  fontSize: window.innerWidth < 600 ? 15 : 19,
-                  backdropFilter: 'blur(2px)',
-                  border: msg.sender === 'user' ? '1.5px solid #a5b4fc' : '1.5px solid #e0e7ff',
-                  transition: 'background 0.2s',
-                  animation: 'bubblePop 0.4s',
+                  fontSize: 14,
+                  border: msg.sender === 'user' ? '1.5px solid #2563eb' : '1.5px solid #cbd5e1',
+                  fontFamily: 'Segoe UI, Arial, sans-serif',
                 }}>{msg.text}</span>
                 {msg.files && msg.files.length > 0 && (
-                  <div style={{ fontSize: window.innerWidth < 600 ? 11 : 14, color: '#555', marginTop: 8, display: 'flex', flexWrap: 'wrap', gap: 4 }}>
+                  <div style={{ fontSize: 11, color: '#555', marginTop: 4, display: 'flex', flexWrap: 'wrap', gap: 4 }}>
                     <b>Files:</b> {msg.files.map((f, i) => (
-                      <span key={i} style={{ background: '#e0e7ff', borderRadius: 8, padding: '2px 8px', marginLeft: 4 }}>{f}</span>
+                      <span key={i} style={{ background: '#e0e7ff', borderRadius: 0, padding: '2px 8px', marginLeft: 4 }}>{f}</span>
                     ))}
                   </div>
                 )}
               </div>
             ))}
-            {loading && <div style={{ textAlign: 'center', color: '#888', fontSize: window.innerWidth < 600 ? 15 : 20, opacity: 0.7, fontStyle: 'italic', letterSpacing: 1, animation: 'fadeIn 0.5s' }}>Learning Chatbot is typing...</div>}
+            {loading && <div style={{ textAlign: 'center', color: '#64748b', fontSize: 14, opacity: 0.7, fontStyle: 'italic', letterSpacing: 1 }}>AI Chatbot is typing...</div>}
           </div>
           {/* Input Area */}
-          <div style={{ padding: window.innerWidth < 600 ? 10 : 28, borderTop: '1.5px solid #e0e7ff', background: 'rgba(255,255,255,0.98)', display: 'flex', gap: window.innerWidth < 600 ? 6 : 16, alignItems: 'center', flexDirection: window.innerWidth < 600 ? 'column' : 'row' }}>
+          <div style={{ padding: 10, borderTop: '2px solid #e2e8f0', background: '#fff', display: 'flex', gap: 6, alignItems: 'center' }}>
             <input
               type="text"
               value={input}
               onChange={e => setInput(e.target.value)}
-              placeholder="Ask me anything..."
-              style={{ flex: 1, borderRadius: 14, border: '1.5px solid #a5b4fc', padding: window.innerWidth < 600 ? '10px 12px' : '18px 22px', fontSize: window.innerWidth < 600 ? 15 : 20, background: 'rgba(245,245,255,0.92)', outline: 'none', boxShadow: '0 1px 6px rgba(160,160,200,0.08)', color: '#333', width: window.innerWidth < 600 ? '100%' : undefined, marginBottom: window.innerWidth < 600 ? 6 : 0, transition: 'box-shadow 0.2s', animation: 'inputPop 0.3s' }}
+              placeholder="Type your message..."
+              style={{ flex: 1, borderRadius: 0, border: '1.5px solid #cbd5e1', padding: '8px 12px', fontSize: 14, background: '#f8fafc', outline: 'none', color: '#333', fontFamily: 'Segoe UI, Arial, sans-serif', transition: 'box-shadow 0.2s' }}
               onKeyDown={e => { if (e.key === 'Enter') handleSend(); }}
               disabled={loading}
             />
@@ -197,20 +193,16 @@ const AIChatbot: React.FC = () => {
             <button
               onClick={() => fileInputRef.current?.click()}
               style={{
-                borderRadius: 14,
-                border: '1.5px solid #a5b4fc',
-                background: 'linear-gradient(135deg, #e0e7ff 0%, #a5b4fc 100%)',
-                padding: window.innerWidth < 600 ? '0 10px' : '0 20px',
-                fontSize: window.innerWidth < 600 ? 18 : 28,
-                color: '#6366f1',
+                borderRadius: 0,
+                border: '1.5px solid #cbd5e1',
+                background: '#f1f5f9',
+                padding: '0 8px',
+                fontSize: 16,
+                color: '#2563eb',
                 cursor: 'pointer',
                 fontWeight: 700,
-                boxShadow: '0 1px 6px rgba(160,160,200,0.08)',
-                transition: 'background 0.2s, color 0.2s',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: window.innerWidth < 600 ? 36 : 56,
+                height: 32,
+                fontFamily: 'Segoe UI, Arial, sans-serif',
               }}
               disabled={loading}
               title="Attach files"
@@ -218,44 +210,28 @@ const AIChatbot: React.FC = () => {
             <button
               onClick={handleSend}
               style={{
-                borderRadius: 14,
+                borderRadius: 0,
                 border: 'none',
-                background: 'linear-gradient(90deg, #6366f1 0%, #a5b4fc 100%)',
+                background: '#2563eb',
                 color: '#fff',
-                padding: window.innerWidth < 600 ? '0 18px' : '0 44px',
-                fontWeight: 900,
-                fontSize: window.innerWidth < 600 ? 16 : 24,
-                boxShadow: '0 2px 12px rgba(99,102,241,0.12)',
+                padding: '0 14px',
+                fontWeight: 700,
+                fontSize: 15,
                 cursor: 'pointer',
-                height: window.innerWidth < 600 ? 36 : 56,
-                transition: 'background 0.2s, color 0.2s',
+                height: 32,
                 letterSpacing: 1.1,
+                fontFamily: 'Segoe UI, Arial, sans-serif',
               }}
               disabled={loading}
             >Send</button>
           </div>
           {files.length > 0 && (
-            <div style={{ margin: window.innerWidth < 600 ? '0 0 8px 0' : '0 0 16px 0', fontSize: window.innerWidth < 600 ? 12 : 15, color: '#555', paddingLeft: window.innerWidth < 600 ? 12 : 36, display: 'flex', flexWrap: 'wrap', gap: 4 }}>
+            <div style={{ margin: '0 0 6px 0', fontSize: 11, color: '#555', paddingLeft: 14, display: 'flex', flexWrap: 'wrap', gap: 4 }}>
               <b>Files:</b> {files.map((f, i) => (
-                <span key={i} style={{ background: '#e0e7ff', borderRadius: 8, padding: '2px 8px', marginLeft: 4 }}>{f.name}</span>
+                <span key={i} style={{ background: '#e0e7ff', borderRadius: 0, padding: '2px 8px', marginLeft: 4 }}>{f.name}</span>
               ))}
             </div>
           )}
-          {/* Animations */}
-          <style>{`
-            @keyframes fadeIn {
-              from { opacity: 0; transform: translateY(16px); }
-              to { opacity: 1; transform: translateY(0); }
-            }
-            @keyframes bubblePop {
-              0% { transform: scale(0.92); }
-              100% { transform: scale(1); }
-            }
-            @keyframes inputPop {
-              0% { box-shadow: 0 0 0 rgba(99,102,241,0.00); }
-              100% { box-shadow: 0 2px 12px rgba(99,102,241,0.10); }
-            }
-          `}</style>
         </div>
       )}
     </>

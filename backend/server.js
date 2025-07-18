@@ -23,16 +23,12 @@ const requestRoutes = require("./routes/requests");
 const messageRoutes = require("./routes/messages");
 
 const app = express();
+app.set('trust proxy', 1); // Trust first proxy for correct client IP handling
 const server = createServer(app);
-const io = new Server(server, {
-  cors: {
-    origin: [
-      process.env.FRONTEND_URL || "http://localhost:8000",
-    ],
-    methods: ["GET", "POST"],
-    credentials: true
-  }
-});
+const allowedOrigins = [
+  process.env.FRONTEND_URL
+].filter(Boolean);
+
 
 // Connect to MongoDB
 connectDB();
@@ -40,15 +36,21 @@ connectDB();
 // Middleware
 app.use(helmet());
 app.use(compression());
+
 app.use(
   cors({
-    origin: [
-      process.env.FRONTEND_URL || "http://localhost:8000",
-      "http://localhost:3001",
-    ],
+    origin: allowedOrigins,
     credentials: true,
   })
 );
+
+const io = new Server(server, {
+  cors: {
+    origin: allowedOrigins,
+    methods: ["GET", "POST"],
+    credentials: true
+  }
+});
 
 // Rate limiting for general API endpoints
 const limiter = rateLimit({

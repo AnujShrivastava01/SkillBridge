@@ -16,8 +16,7 @@ class SocketService {
   }
 
   getSocketUrl() {
-    // Use environment variable if available, otherwise fallback to localhost
-    return import.meta.env.VITE_BACKEND_URL || 'http://localhost:3001';
+    return import.meta.env.VITE_API_URL || "http://localhost:3001";
   }
 
   connect(userId) {
