@@ -12,6 +12,17 @@
   "categories": ["education", "productivity", "social"],
   "icons": [
     {
+      "src": "/favicon.ico",
+      "sizes": "16x16 32x32 48x48",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/SkillBridge.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
       "src": "/SkillBridge192.png",
       "sizes": "192x192",
       "type": "image/png",
