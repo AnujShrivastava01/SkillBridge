@@ -3,7 +3,7 @@
 </div>
 
 <div align="center">
-  <h3>🌟 A revolutionary peer-to-peer learning platform where students can help each other with academic and skill-based requests 🌟</h3>
+  <h3>🌟 A revolutionary peer-to-peer learning platform where students can help each other with academic and skill-based requests! 🌟</h3>
 </div>
 
 <div align="center">
