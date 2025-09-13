@@ -15,9 +15,7 @@ export default defineConfig(({ mode }) => ({
     react(), 
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.ico', 'SkillBridge.png', 'SkillBridge192.png', 'SkillBridge512.png', 'deskprev.png', 'skillmobprev.png'],
-      filename: 'sw.js',
-      strategies: 'generateSW',
+      includeAssets: ['favicon.ico', 'SkillBridge.png', 'deskprev.png', 'skillmobprev.png'],
       manifest: {
         name: 'SkillBridge - Peer Learning Platform',
         short_name: 'SkillBridge',
@@ -29,13 +27,13 @@ export default defineConfig(({ mode }) => ({
         start_url: '/',
         icons: [
           {
-            src: 'SkillBridge192.png',
+            src: 'SkillBridge.png',
             sizes: '192x192',
             type: 'image/png',
             purpose: 'any maskable'
           },
           {
-            src: 'SkillBridge512.png',
+            src: 'SkillBridge.png',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'any maskable'
