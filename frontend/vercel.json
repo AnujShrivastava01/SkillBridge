@@ -37,20 +37,11 @@
           "value": "public, max-age=31536000"
         }
       ]
-    },
-    {
-      "source": "/favicon.ico",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000"
-        }
-      ]
     }
   ],
   "routes": [
     {
-      "src": "/((?!assets|favicon\\.ico|robots\\.txt|manifest\\.json|sw\\.js|placeholder\\.svg|SkillBridge.*\\.png|deskprev\\.png|skillmobprev\\.png).*)",
+      "src": "/(.*)",
       "dest": "/index.html"
     }
   ]
