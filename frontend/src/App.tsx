@@ -20,6 +20,7 @@ import { useAuth } from "./contexts/AuthContext";
 import socketService from "./services/socket";
 import { toast } from "./hooks/use-toast";
 import AIChatbot from './components/AIChatbot';
+import PWAInstallPrompt from './components/PWAInstallPrompt';
 
 const queryClient = new QueryClient();
 
@@ -130,6 +131,7 @@ const App = () => {
               </Routes>
             </BrowserRouter>
             <AIChatbot />
+            <PWAInstallPrompt />
           </TooltipProvider>
         </AuthProvider>
       </QueryClientProvider>
