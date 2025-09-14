@@ -1,4 +1,7 @@
 {
+  "buildCommand": "cd frontend && npm run build",
+  "outputDirectory": "frontend/dist",
+  "installCommand": "cd frontend && npm install",
   "rewrites": [
     {
       "source": "/((?!assets|favicon\\.ico|robots\\.txt|manifest\\.json|sw\\.js|SkillBridge192\\.png|SkillBridge512\\.png|skillmobprev-removebg-preview\\.png|deskprev\\.png|placeholder\\.svg).*)",
