@@ -13,7 +13,7 @@
   "outputDirectory": "dist",
   "routes": [
     {
-      "src": "/((?!assets|favicon\\.ico|robots\\.txt|manifest\\.json|placeholder\\.svg).*)",
+      "src": "/((?!assets|favicon\\.ico|robots\\.txt|manifest\\.webmanifest|sw\\.js|pwa-.*\\.png|apple-touch-icon\\.png|masked-icon\\.svg|placeholder\\.svg).*)",
       "dest": "/index.html"
     }
   ]
