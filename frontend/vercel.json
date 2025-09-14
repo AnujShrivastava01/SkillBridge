@@ -1,20 +1,11 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
-    }
-  ],
-  "buildCommand": "npm run build",
+  "buildCommand": "npm run build:vercel",
   "outputDirectory": "dist",
-  "routes": [
+  "rewrites": [
     {
-      "src": "/((?!assets|favicon\\.ico|robots\\.txt|manifest\\.json|sw\\.js|SkillBridge192\\.png|SkillBridge512\\.png|skillmobprev-removebg-preview\\.png|deskprev\\.png|placeholder\\.svg).*)",
-      "dest": "/index.html"
+      "source": "/((?!assets|favicon\\.ico|robots\\.txt|manifest\\.json|sw\\.js|SkillBridge192\\.png|SkillBridge512\\.png|skillmobprev-removebg-preview\\.png|deskprev\\.png|placeholder\\.svg).*)",
+      "destination": "/index.html"
     }
   ],
   "headers": [

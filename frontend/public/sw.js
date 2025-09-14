@@ -16,14 +16,7 @@ self.addEventListener('install', (event) => {
     caches.open(CACHE_NAME)
       .then((cache) => {
         console.log('Opened cache');
-        return cache.addAll(urlsToCache.map(url => {
-          try {
-            return new Request(url, { cache: 'reload' });
-          } catch (e) {
-            console.log('Failed to create request for:', url);
-            return url;
-          }
-        }));
+        return cache.addAll(urlsToCache);
       })
       .catch((error) => {
         console.log('Cache install failed:', error);
