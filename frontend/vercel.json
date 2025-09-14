@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ],
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "routes": [
+    {
+      "src": "/((?!assets|favicon\\.ico|robots\\.txt|manifest\\.json|placeholder\\.svg).*)",
+      "dest": "/index.html"
+    }
+  ]
+}
