@@ -1,12 +1,11 @@
 # Dependencies
 node_modules/
-frontend/node_modules/
-backend/node_modules/
+.pnp
+.pnp.js
 
-# Build outputs
-frontend/dist/
-frontend/dev-dist/
-backend/uploads/
+# Production builds
+dist/
+build/
 
 # Environment variables
 .env
@@ -14,11 +13,13 @@ backend/uploads/
 .env.development.local
 .env.test.local
 .env.production.local
-
+backend/.env
+frontend/.env
 # Logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
 lerna-debug.log*
 
 # Runtime data
@@ -35,6 +36,7 @@ coverage/
 .nyc_output
 
 # Dependency directories
+node_modules/
 jspm_packages/
 
 # Optional npm cache directory
@@ -42,6 +44,12 @@ jspm_packages/
 
 # Optional eslint cache
 .eslintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
 
 # Optional REPL history
 .node_repl_history
@@ -52,33 +60,46 @@ jspm_packages/
 # Yarn Integrity file
 .yarn-integrity
 
-# dotenv environment variables file
-.env
-
 # parcel-bundler cache (https://parceljs.org/)
 .cache
 .parcel-cache
 
-# next.js build output
+# Next.js build output
 .next
 
-# nuxt.js build output
+# Nuxt.js build / generate output
 .nuxt
+dist
 
-# vuepress build output
-.vuepress/dist
+# Gatsby files
+.cache/
 
-# Serverless directories
-.serverless
+# Storybook build outputs
+.out
+.storybook-out
 
-# FuseBox cache
-.fusebox/
+# Temporary folders
+tmp/
+temp/
 
-# DynamoDB Local files
-.dynamodb/
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
 
-# TernJS port file
-.tern-port
+# OS generated files
+Thumbs.db
 
-# Vercel
-.vercel
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# MongoDB data (if using local MongoDB)
+data/
