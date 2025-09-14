@@ -1,7 +1,4 @@
 {
-  "version": 2,
-  "buildCommand": "npm run build:vercel",
-  "outputDirectory": "dist",
   "rewrites": [
     {
       "source": "/((?!assets|favicon\\.ico|robots\\.txt|manifest\\.json|sw\\.js|SkillBridge192\\.png|SkillBridge512\\.png|skillmobprev-removebg-preview\\.png|deskprev\\.png|placeholder\\.svg).*)",
