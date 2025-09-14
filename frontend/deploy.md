@@ -9,7 +9,14 @@ Your PWA is now ready for deployment! Here's how to deploy to [https://skill-bri
 # Install Vercel CLI if not already installed
 npm i -g vercel
 
-# Deploy from the frontend directory
+# Deploy from the root directory (where vercel.json is located)
+vercel --prod
+```
+
+### Option 1b: Deploy Frontend Only
+```bash
+# If deploying just the frontend directory
+cd frontend
 vercel --prod
 ```
 

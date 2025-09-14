@@ -1,4 +1,10 @@
 {
+  "name": "skillbridge",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "cd frontend && npm install && npm run build",
+    "dev": "cd frontend && npm run dev"
+  },
   "devDependencies": {
     "vite-plugin-pwa": "^1.0.3",
     "workbox-window": "^7.3.0"
