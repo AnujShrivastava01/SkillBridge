@@ -1,9 +1,7 @@
-const CACHE_NAME = 'skillbridge-v1';
+const CACHE_NAME = 'skillbridge-v2';
 const urlsToCache = [
   '/',
   '/index.html',
-  '/static/js/bundle.js',
-  '/static/css/main.css',
   '/SkillBridge192.png',
   '/SkillBridge512.png',
   '/skillmobprev-removebg-preview.png',
@@ -18,10 +16,19 @@ self.addEventListener('install', (event) => {
     caches.open(CACHE_NAME)
       .then((cache) => {
         console.log('Opened cache');
-        return cache.addAll(urlsToCache);
+        return cache.addAll(urlsToCache.map(url => {
+          try {
+            return new Request(url, { cache: 'reload' });
+          } catch (e) {
+            console.log('Failed to create request for:', url);
+            return url;
+          }
+        }));
       })
       .catch((error) => {
         console.log('Cache install failed:', error);
+        // Don't fail the installation if some resources can't be cached
+        return Promise.resolve();
       })
   );
   // Force the waiting service worker to become the active service worker
