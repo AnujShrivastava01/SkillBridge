@@ -39,11 +39,11 @@ const Footer = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
             {/* Brand Section */}
             <div className="lg:col-span-2">
-              <div className="flex items-center mb-4">
-                <div className="w-10 h-10 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-lg flex items-center justify-center text-2xl font-bold text-white">
-                  SB
-                </div>
-                <span className="ml-3 text-2xl font-bold text-white">SkillBridge</span>
+              <div className="mb-4">
+                <h1 className="text-2xl font-bold">
+                  <span className="text-white">Skill</span>
+                  <span className="text-cyan-400">Bridge</span>
+                </h1>
               </div>
               <p className="text-slate-300 mb-6 max-w-md text-sm">
                 Peer-to-peer learning simplified. Connect with fellow students, share knowledge, and grow together in your learning journey.
