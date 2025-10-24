@@ -11,42 +11,9 @@
   ],
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "headers": [
-    {
-      "source": "/sw.js",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "application/javascript"
-        },
-        {
-          "key": "Service-Worker-Allowed",
-          "value": "/"
-        }
-      ]
-    },
-    {
-      "source": "/workbox-*.js",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "application/javascript"
-        }
-      ]
-    },
-    {
-      "source": "/manifest.json",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "application/json"
-        }
-      ]
-    }
-  ],
   "routes": [
     {
-      "src": "/((?!assets|favicon\\.ico|robots\\.txt|manifest\\.json|placeholder\\.svg|sw\\.js|workbox-.*\\.js|icon-.*\\.png|apple-touch-icon\\.png|mstile-.*\\.png|safari-pinned-tab\\.svg|browserconfig\\.xml).*)",
+      "src": "/((?!assets|favicon\\.ico|robots\\.txt|manifest\\.json|placeholder\\.svg).*)",
       "dest": "/index.html"
     }
   ]
