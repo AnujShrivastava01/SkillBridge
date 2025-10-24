@@ -7,11 +7,12 @@ import { componentTagger } from "lovable-tagger";
 export default defineConfig(({ mode }) => ({
   base: '/',
   build: {
-    assetsDir: '.',
+    assetsDir: 'assets',
     rollupOptions: {
       output: {
-        assetFileNames: '[name][extname]',
-        entryFileNames: '[name].js',
+        assetFileNames: 'assets/[name]-[hash][extname]',
+        entryFileNames: 'assets/[name]-[hash].js',
+        chunkFileNames: 'assets/[name]-[hash].js',
       },
     },
   },

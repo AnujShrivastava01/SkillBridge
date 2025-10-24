@@ -48,5 +48,14 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      // Fallback for production build
+      if (import.meta.env.PROD) {
+        const script = document.createElement('script');
+        script.type = 'module';
+        script.src = '/assets/main.js';
+        document.body.appendChild(script);
+      }
+    </script>
   </body>
 </html>
