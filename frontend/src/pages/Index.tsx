@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Navigation from "../components/Navigation";
 import Preloader from "../components/Preloader";
 import RequestFeed from "../components/RequestFeed";
+import Footer from "../components/Footer";
 import apiService from "../services/api";
 import "./orbit-animations.css";
 
@@ -337,6 +338,9 @@ const Index = () => {
               </div>
             </div>
           </section>
+
+          {/* Footer */}
+          <Footer />
         </>
       )}
     </>
