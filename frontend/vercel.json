@@ -1,43 +1,8 @@
 {
-  "version": 2,
-  "builds": [
+  "rewrites": [
     {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
-    }
-  ],
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist",
-  "headers": [
-    {
-      "source": "/sw.js",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=0, must-revalidate"
-        },
-        {
-          "key": "Service-Worker-Allowed",
-          "value": "/"
-        }
-      ]
-    }
-  ],
-  "routes": [
-    {
-      "src": "/sw.js",
-      "dest": "/sw.js"
-    },
-    {
-      "src": "/manifest.json",
-      "dest": "/manifest.json"
-    },
-    {
-      "src": "/((?!assets|favicon\\.ico|robots\\.txt|manifest\\.json|sw\\.js|icon-|apple-touch-icon|masked-icon|safari-pinned-tab|mstile-).*)",
-      "dest": "/index.html"
+      "source": "/((?!assets|favicon\\.ico|robots\\.txt|manifest\\.json|sw\\.js|icon-|apple-touch-icon|masked-icon|safari-pinned-tab|mstile-).*)",
+      "destination": "/index.html"
     }
   ]
 }
