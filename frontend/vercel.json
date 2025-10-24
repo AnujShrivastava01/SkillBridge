@@ -1,16 +1,9 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
-    }
-  ],
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "framework": "vite",
+  "installCommand": "npm install",
   "headers": [
     {
       "source": "/sw.js",
@@ -22,6 +15,10 @@
         {
           "key": "Service-Worker-Allowed",
           "value": "/"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/javascript"
         }
       ]
     },
@@ -31,6 +28,32 @@
         {
           "key": "Content-Type",
           "value": "application/manifest+json"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000"
+        }
+      ]
+    },
+    {
+      "source": "/workbox-.*\\.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/javascript"
+        }
+      ]
+    },
+    {
+      "source": "/icon-.*\\.png",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000"
         }
       ]
     },
@@ -54,7 +77,7 @@
   ],
   "routes": [
     {
-      "src": "/((?!assets|favicon\\.ico|robots\\.txt|manifest\\.json|placeholder\\.svg|sw\\.js|workbox-.*\\.js|pwa-.*\\.png|apple-touch-icon\\.png|masked-icon\\.svg).*)",
+      "src": "/((?!assets|favicon\\.ico|robots\\.txt|manifest\\.json|placeholder\\.svg|sw\\.js|workbox-.*\\.js|icon-.*\\.png|apple-touch-icon\\.png|masked-icon\\.svg|safari-pinned-tab\\.svg).*)",
       "dest": "/index.html"
     }
   ]
