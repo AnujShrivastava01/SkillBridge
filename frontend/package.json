@@ -5,12 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run pregenerate && vite build",
-    "lint": "eslint .",
-    "generate-icons": "node --experimental-modules scripts/generate-icons.mjs",
-    "generate-mstiles": "node --experimental-modules scripts/generate-mstiles.js",
-    "pregenerate": "npm run generate-icons && npm run generate-mstiles",
-    "prebuild": "npm run pregenerate"
+    "build": "vite build",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -80,7 +76,6 @@
     "globals": "^15.9.0",
     "lovable-tagger": "^1.1.7",
     "postcss": "^8.4.47",
-    "sharp": "^0.34.4",
     "tailwindcss": "^3.4.11",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.1",

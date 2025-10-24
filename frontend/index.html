@@ -3,41 +3,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta name="theme-color" content="#000000" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SkillBridge - Peer Learning Platform</title>
     <meta name="description" content="Collaborate. Learn. Grow. - Peer-to-peer learning simplified." />
     <meta name="author" content="SkillBridge" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <meta name="apple-mobile-web-app-title" content="SkillBridge" />
-    <meta name="mobile-web-app-capable" content="yes" />
-
-    <!-- PWA Manifest -->
-    <link rel="manifest" href="/manifest.json" />
-    
-    <!-- Theme Color -->
-    <meta name="theme-color" content="#000000" />
-    
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    
-    <!-- Apple Touch Icons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000">
-    
-    <!-- PWA Meta Tags -->
-    <meta name="application-name" content="SkillBridge" />
-    <meta name="msapplication-TileColor" content="#000000" />
-    <meta name="msapplication-config" content="/browserconfig.xml" />
-    <meta name="theme-color" content="#000000" />
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="msapplication-TileColor" content="#000000">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,59 +14,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Phosphor Icons -->
+    <link rel="icon" type="image/x-icon" href="./public/favicon.ico" />
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     
     <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
-    <!-- Open Graph / Social Media -->
     <meta property="og:title" content="SkillBridge - Peer Learning Platform" />
     <meta property="og:description" content="Collaborate. Learn. Grow. - Peer-to-peer learning simplified." />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/SkillBridge512.png" />
-    
-    <!-- iOS PWA -->
-    <link rel="apple-touch-startup-image" href="/SkillBridge512.png" />
-    <meta name="apple-mobile-web-app-status-bar" content="#000000" />
   </head>
 
   <body>
     <div id="root"></div>
-    <!-- Remove the development script -->
     <script type="module" src="/src/main.tsx"></script>
-    <!-- Production script will be injected by Vite -->
-    
-    <!-- Service Worker Registration -->
-    <script>
-      if ('serviceWorker' in navigator) {
-        console.log('Service Worker is supported');
-        window.addEventListener('load', function() {
-          console.log('Window loaded, registering Service Worker...');
-          navigator.serviceWorker.register('/sw.js', { scope: '/' })
-            .then(function(registration) {
-              console.log('ServiceWorker registration successful with scope: ', registration.scope);
-              // Check if the service worker is actually installed
-              if (registration.installing) {
-                console.log('Service worker installing');
-              } else if (registration.waiting) {
-                console.log('Service worker installed');
-              } else if (registration.active) {
-                console.log('Service worker active');
-              }
-            })
-            .catch(function(error) {
-              console.error('ServiceWorker registration failed: ', error);
-            });
-            
-          // Check for updates to the service worker
-          navigator.serviceWorker.ready.then(registration => {
-            console.log('Service Worker is ready to handle requests');
-          });
-        });
-      } else {
-        console.warn('Service workers are not supported in this browser.');
-      }
-    </script>
   </body>
 </html>
