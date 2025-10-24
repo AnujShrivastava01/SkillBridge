@@ -24,6 +24,7 @@ export default defineConfig(({ mode }) => ({
         type: 'module'
       },
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
+      filename: 'sw.js',
       manifest: {
         name: 'SkillBridge - Peer Learning Platform',
         short_name: 'SkillBridge',

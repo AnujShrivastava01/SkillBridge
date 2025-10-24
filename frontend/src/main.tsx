@@ -24,10 +24,25 @@ if ('serviceWorker' in navigator) {
           console.log('SW registration skipped in development: ', registrationError);
         });
     } else {
-      // In production, always try to register
-      navigator.serviceWorker.register('/sw.js')
+      // In production, register with proper error handling
+      navigator.serviceWorker.register('/sw.js', {
+        scope: '/'
+      })
         .then((registration) => {
           console.log('SW registered: ', registration);
+          
+          // Check for updates
+          registration.addEventListener('updatefound', () => {
+            const newWorker = registration.installing;
+            if (newWorker) {
+              newWorker.addEventListener('statechange', () => {
+                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                  // New content is available, reload the page
+                  window.location.reload();
+                }
+              });
+            }
+          });
         })
         .catch((registrationError) => {
           console.log('SW registration failed: ', registrationError);
