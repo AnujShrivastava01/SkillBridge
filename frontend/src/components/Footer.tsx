@@ -50,58 +50,61 @@ const Footer = () => {
               </p>
             </div>
 
-            {/* Quick Links */}
-            <div>
-              <h3 className="text-sm font-bold text-white mb-4 uppercase tracking-wider">QUICK LINKS</h3>
-              <ul className="space-y-2">
-                {footerLinks.quickLinks.map((link, index) => (
-                  <li key={index}>
-                    <button
-                      onClick={() => scrollToSection(link.href)}
-                      className="text-slate-300 hover:text-white transition-colors duration-200 text-left text-sm"
-                    >
-                      {link.name}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {/* Mobile Layout - Two columns on mobile */}
+            <div className="grid grid-cols-2 gap-8 md:contents">
+              {/* Quick Links */}
+              <div>
+                <h3 className="text-sm font-bold text-white mb-4 uppercase tracking-wider">QUICK LINKS</h3>
+                <ul className="space-y-2">
+                  {footerLinks.quickLinks.map((link, index) => (
+                    <li key={index}>
+                      <button
+                        onClick={() => scrollToSection(link.href)}
+                        className="text-slate-300 hover:text-white transition-colors duration-200 text-left text-sm"
+                      >
+                        {link.name}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-            {/* Follow Us */}
-            <div>
-              <h3 className="text-sm font-bold text-white mb-4 uppercase tracking-wider">FOLLOW US</h3>
-              <ul className="space-y-2">
-                {footerLinks.followUs.map((link, index) => (
-                  <li key={index}>
-                    <a
-                      href={link.href}
-                      className="text-slate-300 hover:text-white transition-colors duration-200 text-sm flex items-center gap-2"
-                    >
-                      <span className="text-sm">{link.icon}</span>
-                      {link.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+              {/* Follow Us - Right side on mobile */}
+              <div>
+                <h3 className="text-sm font-bold text-white mb-4 uppercase tracking-wider">FOLLOW US</h3>
+                <ul className="space-y-2">
+                  {footerLinks.followUs.map((link, index) => (
+                    <li key={index}>
+                      <a
+                        href={link.href}
+                        className="text-slate-300 hover:text-white transition-colors duration-200 text-sm flex items-center gap-2"
+                      >
+                        <span className="text-sm">{link.icon}</span>
+                        {link.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-            {/* Contact */}
-            <div>
-              <h3 className="text-sm font-bold text-white mb-4 uppercase tracking-wider">CONTACT</h3>
-              <ul className="space-y-2">
-                {teamMembers.map((member, index) => (
-                  <li key={index}>
-                    <a
-                      href={member.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-slate-300 hover:text-white transition-colors duration-200 text-sm"
-                    >
-                      {member.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+              {/* Contact - Right side on mobile */}
+              <div>
+                <h3 className="text-sm font-bold text-white mb-4 uppercase tracking-wider">CONTACT</h3>
+                <ul className="space-y-2">
+                  {teamMembers.map((member, index) => (
+                    <li key={index}>
+                      <a
+                        href={member.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-slate-300 hover:text-white transition-colors duration-200 text-sm"
+                      >
+                        {member.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
 
