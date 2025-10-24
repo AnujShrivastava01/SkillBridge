@@ -1,6 +1,6 @@
 {
   "devDependencies": {
-    "vite-plugin-pwa": "^1.0.3",
+    "vite-plugin-pwa": "^1.1.0",
     "workbox-window": "^7.3.0"
   }
 }
