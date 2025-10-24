@@ -1,8 +1,20 @@
 {
-  "rewrites": [
+  "version": 2,
+  "builds": [
     {
-      "source": "/((?!assets|favicon\\.ico|robots\\.txt|manifest\\.json|sw\\.js|icon-|apple-touch-icon|masked-icon|safari-pinned-tab|mstile-).*)",
-      "destination": "/index.html"
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ],
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "routes": [
+    {
+      "src": "/((?!assets|favicon\\.ico|robots\\.txt|manifest\\.json|placeholder\\.svg).*)",
+      "dest": "/index.html"
     }
   ]
 }
