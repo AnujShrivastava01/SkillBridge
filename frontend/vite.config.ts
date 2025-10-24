@@ -68,7 +68,12 @@ export default defineConfig(({ mode }) => ({
             'safari-pinned-tab.svg',
             'manifest.json',
             'robots.txt',
-            'site.webmanifest'
+            'site.webmanifest',
+            'sw.js',
+            'browserconfig.xml',
+            'mstile-70x70.png',
+            'mstile-150x150.png',
+            'mstile-310x310.png'
           ];
           
           if (assetInfo.name && pwaAssets.includes(assetInfo.name)) {

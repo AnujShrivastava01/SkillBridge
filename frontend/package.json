@@ -5,9 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run generate-icons && vite build",
+    "build": "npm run pregenerate && vite build",
     "lint": "eslint .",
-    "generate-icons": "node --experimental-modules scripts/generate-icons.mjs"
+    "generate-icons": "node --experimental-modules scripts/generate-icons.mjs",
+    "generate-mstiles": "node --experimental-modules scripts/generate-mstiles.js",
+    "pregenerate": "npm run generate-icons && npm run generate-mstiles",
+    "prebuild": "npm run pregenerate"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
