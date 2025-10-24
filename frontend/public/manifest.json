@@ -6,13 +6,10 @@
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000",
+  "orientation": "portrait",
+  "scope": "/",
+  "prefer_related_applications": false,
   "icons": [
-    {
-      "src": "/SkillBridge192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
     {
       "src": "/SkillBridge512.png",
       "sizes": "512x512",
