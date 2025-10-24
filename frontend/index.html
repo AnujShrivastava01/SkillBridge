@@ -71,15 +71,32 @@
     <!-- Service Worker Registration -->
     <script>
       if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js')
-            .then(registration => {
+        console.log('Service Worker is supported');
+        window.addEventListener('load', function() {
+          console.log('Window loaded, registering Service Worker...');
+          navigator.serviceWorker.register('/sw.js', { scope: '/' })
+            .then(function(registration) {
               console.log('ServiceWorker registration successful with scope: ', registration.scope);
+              // Check if the service worker is actually installed
+              if (registration.installing) {
+                console.log('Service worker installing');
+              } else if (registration.waiting) {
+                console.log('Service worker installed');
+              } else if (registration.active) {
+                console.log('Service worker active');
+              }
             })
-            .catch(error => {
-              console.log('ServiceWorker registration failed: ', error);
+            .catch(function(error) {
+              console.error('ServiceWorker registration failed: ', error);
             });
+            
+          // Check for updates to the service worker
+          navigator.serviceWorker.ready.then(registration => {
+            console.log('Service Worker is ready to handle requests');
+          });
         });
+      } else {
+        console.warn('Service workers are not supported in this browser.');
       }
     </script>
   </body>

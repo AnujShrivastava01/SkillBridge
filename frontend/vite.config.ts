@@ -3,6 +3,8 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
 import { promises as fs } from 'fs';
+import type { ViteDevServer } from 'vite';
+import type { IncomingMessage, ServerResponse } from 'http';
 
 // Vite plugin to copy PWA assets to the root of the build directory
 const copyPwaAssets = () => ({
@@ -43,7 +45,20 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
     mode === "development" && componentTagger(),
-    copyPwaAssets()
+    copyPwaAssets(),
+    {
+      name: 'configure-server',
+      configureServer(server: ViteDevServer) {
+        server.middlewares.use((req: IncomingMessage, res: ServerResponse, next: () => void) => {
+          // Set correct MIME type for service worker
+          if (req.url === '/sw.js') {
+            res.setHeader('Content-Type', 'application/javascript');
+            res.setHeader('Service-Worker-Allowed', '/');
+          }
+          next();
+        });
+      }
+    }
   ].filter(Boolean),
   build: {
     outDir: 'dist',
